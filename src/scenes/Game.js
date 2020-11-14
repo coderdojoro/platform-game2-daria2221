@@ -9,9 +9,10 @@ class Game extends Phaser.Scene {
 
   }
   create() {
-   this.hero= this.physics.add.sprite(400, 300, 'mage');
+    let hero = this.physics.add.sprite(400, 300, 'mage');
 
-   this.hero.body.setCollideWorldBounds(true)
+    hero.body.setCollideWorldBounds(true);
+
   }
 }
 
