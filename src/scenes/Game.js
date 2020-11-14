@@ -12,6 +12,7 @@ class Game extends Phaser.Scene {
 
 
     this.anims.create({
+
       key: 'hero-idle',
       frames: [
         { frame: 0, key: 'mage', duration: 5000 },
