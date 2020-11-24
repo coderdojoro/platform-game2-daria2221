@@ -11,24 +11,25 @@ class Game extends Phaser.Scene {
   create() {
 
 
-
-    key: 'hero-idle',
-    frames: [
+    this.anims.create({
+      key: 'hero-idle',
+      frames: [
         { frame: 0, key: 'mage', duration: 5000 },
+        ...this.anims.generateFrameNumbers('idle-spritesheet', {})
+      ],
+      frameRate: 6,
+      repeat: -1
+    });
 
-        frameRate: 6,
-        repeat: -1
-      })
 
 
+    let hero = this.physics.add.sprite(400, 300, 'mage');
 
-      let hero = this.physics.add.sprite(400, 300, 'mage');
-
-hero.body.setCollideWorldBounds(true);
-hero.body.setSize(33, 54);
-hero.body.setOffset(27, 57);
-hero.anims.play('hero-idle');
-    }
+    hero.body.setCollideWorldBounds(true);
+    hero.body.setSize(33, 54);
+    hero.body.setOffset(27, 57);
+    hero.anims.play('hero-idle');
   }
+}
 
 export default Game; 
