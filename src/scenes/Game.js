@@ -3,7 +3,9 @@
 import Phaser from 'phaser';
 import Hero from '../entities/Hero.js';
 
-class Game extends Phaser.Scene {preload() {
+class Game extends Phaser.Scene {
+
+  preload() {
     this.load.image('mage', 'assets/mage/mage.png');
     this.load.spritesheet('idle-spritesheet', 'assets/mage/idle.png', { frameWidth: 171, frameHeight: 128 });
     this.load.spritesheet('walk-spritesheet', 'assets/mage/walk.png', { frameWidth: 171, frameHeight: 128 });
