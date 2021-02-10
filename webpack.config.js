@@ -6,7 +6,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = (env, argv) => ({
   devServer: {
-    port: 8181  },
+    port: 8181
+  },
   entry: {
     app: path.resolve(__dirname, './src/index.js'),
     vendor: ['phaser'],
