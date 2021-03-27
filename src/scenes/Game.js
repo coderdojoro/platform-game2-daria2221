@@ -12,7 +12,8 @@ class Game extends Phaser.Scene {
     this.load.spritesheet('double-jump-spritesheet', 'assets/mage/double-jump.png', { frameWidth: 171, frameHeight: 128 })
     this.load.spritesheet('jump-spritesheet', 'assets/mage/jump.png', { frameWidth: 171, frameHeight: 128 })
 
-   this.load.tilemapTiledJSON('level1-tilemap', 'assets/tilemap.json');
+
+    this.load.tilemapTiledJSON('level1-tilemap', 'assets/tilemap.json');
     this.load.image('ground-image', 'assets/tiles/tiles.png ');
     this.load.image('bush-image', 'assets/tiles/bush-and-trees.png');
   }
@@ -20,62 +21,66 @@ class Game extends Phaser.Scene {
 
 
 
-create() {
-  this.anims.create({
-    key: 'hero-idle',
-    frames: [
-      { frame: 0, key: 'mage', duration: 5000 },
-      ...this.anims.generateFrameNumbers('idle-spritesheet', {})
-    ],
-    frameRate: 6,
-    repeat: -1
-  });
+  create() {
+    this.anims.create({
+      key: 'hero-idle',
+      frames: [
+        { frame: 0, key: 'mage', duration: 5000 },
+        ...this.anims.generateFrameNumbers('idle-spritesheet', {})
+      ],
+      frameRate: 6,
+      repeat: -1
+    });
 
-  this.anims.create({
-    key: 'hero-walk',
-    frames: this.anims.generateFrameNumbers('walk-spritesheet', {}),
-    frameRate: 6,
-    repeat: -1
-  });
+    this.anims.create({
+      key: 'hero-walk',
+      frames: this.anims.generateFrameNumbers('walk-spritesheet', {}),
+      frameRate: 6,
+      repeat: -1
+    });
 
-  this.anims.create({
-    key: 'hero-jump',
-    frames: this.anims.generateFrameNumbers('jump-spritesheet', {}),
-    frameRate: 6,
-    repeat: -1
-  });
+    this.anims.create({
+      key: 'hero-jump',
+      frames: this.anims.generateFrameNumbers('jump-spritesheet', {}),
+      frameRate: 6,
+      repeat: -1
+    });
 
-  this.anims.create({
-    key: 'hero-double-jump',
-    frames: this.anims.generateFrameNumbers('double-jump-spritesheet', {}),
-    frameRate: 12,
-    repeat: -1
-  });
-  let map = this.make.tilemap({ key: 'level1-tilemap' });
-  let groundTiles = map.addTilesetImage('ground', 'ground-image');
-  let bushTiles = map.addTilesetImage('bush', 'bush-image');
-
-  let bkg = map.createStaticLayer('background', [groundTiles, bushTiles]);
-  let hero = new Hero(this, 400, 300);
-  let groundLayer = map.createStaticLayer('ground', groundTiles);
-  let fgd = map.createStaticLayer('foreground', [groundTiles, bushTiles])
-
-  this.physics.add.collider(hero, groundLayer);
-  groundLayer.setCollisionBetween(groundTiles.firstgid, groundTiles.firstgid + groundTiles.total, true);
-
-  this.cameras.main.startFollow(hero);
-  this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-  this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-  this.physics.world.setBoundsCollision(true, true, false, true);
+    this.anims.create({
+      key: 'hero-double-jump',
+      frames: this.anims.generateFrameNumbers('double-jump-spritesheet', {}),
+      frameRate: 12,
+      repeat: -1
+    });
 
 
+    let map = this.make.tilemap({ key: 'level1-tilemap' });
+    let groundTiles = map.addTilesetImage('ground', 'ground-image');
+    let bushTiles = map.addTilesetImage('bush', 'bush-image');
+    let objects = map.getObjectLayer('objects').objects;
+    for ()
+
+      let bkg = map.createStaticLayer('background', [groundTiles, bushTiles]);
+    let hero = new Hero(this, 400, 300);
+    let groundLayer = map.createStaticLayer('ground', groundTiles);
+    let fgd = map.createStaticLayer('foreground', [groundTiles, bushTiles])
+
+    this.physics.add.collider(hero, groundLayer);
+    groundLayer.setCollisionBetween(groundTiles.firstgid, groundTiles.firstgid + groundTiles.total, true);
+
+    this.cameras.main.startFollow(hero);
+    this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+    this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+    this.physics.world.setBoundsCollision(true, true, false, true);
 
 
 
 
 
 
-}
+
+
+  }
 
 
 }

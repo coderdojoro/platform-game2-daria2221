@@ -23,7 +23,7 @@ class Hero extends Phaser.GameObjects.Sprite {
         this.body.setSize(33, 54);
         this.body.setOffset(70, 57);
         this.anims.play('hero-idle');
-        this.body.setDragX(500);
+        this.body.setDragX(800);
 
         this.keyLeft = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         this.keyRight = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
@@ -66,9 +66,20 @@ class Hero extends Phaser.GameObjects.Sprite {
         if (JustDown && this.heroState == 'jump') {
             this.body.setVelocityY(-400);
             this.heroState = 'double-jump';
-
         }
-
+            if (this.heroState == 'jump' || this.heroState == 'double-jump') {
+                if (this.keyRight.isDown) {
+                    this.setFlipX(false);
+                    this.body.setAccelerationX(500);
+                } else if (this.keyLeft.isDown) {
+                    this.setFlipX(true);
+                    this.body.setAccelerationX(-500);
+                } else {
+                    this.body.setVelocityX(0)
+                }
+            }
+        
+            //------------------------
         if (this.heroState == "idle" && this.animState != "idle") {
             this.anims.play('hero-idle');
             this.animState = "idle";
