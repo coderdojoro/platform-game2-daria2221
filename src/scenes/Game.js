@@ -58,10 +58,19 @@ class Game extends Phaser.Scene {
     let groundTiles = map.addTilesetImage('ground', 'ground-image');
     let bushTiles = map.addTilesetImage('bush', 'bush-image');
     let objects = map.getObjectLayer('objects').objects;
-    for ()
 
-      let bkg = map.createStaticLayer('background', [groundTiles, bushTiles]);
-    let hero = new Hero(this, 400, 300);
+    let heroX;
+    let heroY;
+    for (let a = 0; a < objects.length; a = a + 1) {
+      let object = objects[a];
+      if (object.name == 'spawn') {
+        heroX = object.x;
+        heroY = object.y;
+      }
+    }
+
+    let bkg = map.createStaticLayer('background', [groundTiles, bushTiles]);
+    let hero = new Hero(this, heroX, heroY);
     let groundLayer = map.createStaticLayer('ground', groundTiles);
     let fgd = map.createStaticLayer('foreground', [groundTiles, bushTiles])
 
